@@ -12,9 +12,9 @@ model = load_model('model/keras-mnist-model.h5')
 
 def remake(frame):
     threshold = 100
-    ret, frame= cv2.threshold(frame, threshold, 255, cv2.THRESH_BINARY)
-    frame=cv2.bitwise_not(frame)
-    img=cv2.resize(frame[150:350,200:400],(28,28))
+    ret, frame = cv2.threshold(frame, threshold, 255, cv2.THRESH_BINARY)
+    frame = cv2.bitwise_not(frame)
+    img = cv2.resize(frame[150:350,200:400],(28,28))
     return img,frame
 
 def check_number(frame):
@@ -24,18 +24,18 @@ def check_number(frame):
     X = np.asarray(X)
     X = X.astype('float32')
     X = X / 255.0
-    num=model.predict(X)
-    ans=str(num.argmax())
+    num = model.predict(X)
+    ans = str(num.argmax())
     return ans
 
 def main():
     cap = cv2.VideoCapture(0)
     while(cap.isOpened()):
-        ret,frame=cap.read()
-        frame1=frame
+        ret,frame = cap.read()
+        frame1 = frame
         frame = cv2.cvtColor(cap.read()[1], cv2.COLOR_RGB2GRAY)
-        img,frame=remake(frame)
-        ansnum=check_number(img)
+        img,frame = remake(frame)
+        ansnum = check_number(img)
 
         cv2.putText(cv2.rectangle(frame1, (200,   150), (400,  350), (255, 0, 0), 1, 4), ansnum, (20,50), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (255,0,0), 2, cv2.LINE_AA)
         cv2.imshow("num", frame1)

@@ -9,7 +9,10 @@ import os
 import re
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
-model = load_model("model/keras-kmnist-model.h5")
+#model = load_model("model/keras-kmnist-model.h5")
+model_path="model/keras-kmnist-model.h5"
+model_arc_str = open(model_path).read()
+model = model_from_json(model_arc_str)
 
 def remake(frame):
     threshold = 100

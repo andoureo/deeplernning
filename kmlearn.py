@@ -134,10 +134,10 @@ def plot_results(models,
  
 # MNIST dataset
 #(x_train, y_train), (x_test, y_test) = mnist.load_data()
-x_train = np.load('k49-train-imgs.npz')['arr_0']
-x_test = np.load('k49-test-imgs.npz')['arr_0']
-y_train = np.load('k49-train-labels.npz')['arr_0']
-y_test = np.load('k49-test-labels.npz')['arr_0']
+x_train = np.load('dataset/k49-train-imgs.npz')['arr_0']
+x_test = np.load('dataset/k49-test-imgs.npz')['arr_0']
+y_train = np.load('dataset/k49-train-labels.npz')['arr_0']
+y_test = np.load('dataset/k49-test-labels.npz')['arr_0']
  
 image_size = x_train.shape[1]
 original_dim = image_size * image_size

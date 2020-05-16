@@ -23,7 +23,7 @@ def check_number(frame):
     X.append(img)
     X = np.asarray(X)
     X = X.astype('float32')
-    X = X / 255.0 # 0~255を0~1の範囲に収めるため?
+    X = X / 255.0 # 0~255を0~1の範囲に収めるため?　そうっぽい
     num = model.predict(X)
     ans = str(num.argmax())
     return ans

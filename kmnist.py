@@ -3,7 +3,7 @@ import cv2
 import keras
 import numpy as np
 from PIL import Image
-from keras.models import load_model
+from keras.models import model_from_json#load_model
 from keras.preprocessing.image import array_to_img, img_to_array,load_img
 import os
 import re
@@ -11,8 +11,10 @@ import re
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 #model = load_model("model/keras-kmnist-model.h5")
 model_path="model/keras-kmnist-model.h5"
-model_arc_str = open(model_path, encoding='latin1').read()
-model = load_model(model_arc_str)
+#model_arc_str = open(model_path, encoding='latin1').read()
+#model = load_model(model_arc_str)
+model =model_from_json(open('k_mnist_cnn_model.json').read())
+model.load_weights('k_mnist_cnn_weights.h5')
 
 def remake(frame):
     threshold = 100
@@ -36,8 +38,8 @@ def main():
     cap = cv2.VideoCapture(0)
     while(cap.isOpened()):
         ret,frame=cap.read()
-        frame = cv2.cvtColor(cap.read()[1], cv2.COLOR_RGB2GRAY)
         frame1=frame
+        frame = cv2.cvtColor(cap.read()[1], cv2.COLOR_RGB2GRAY)
         img=remake(frame)
         ansnum=check_number(img)
 

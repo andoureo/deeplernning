@@ -46,7 +46,7 @@ def main():
         ansnum=check_number(img)
         tex=label_dict[ansnum]
 
-        cv2.putText(cv2.rectangle(frame1, (200,   150), (400,  350), (255, 0, 0), 1, 4), tex, (20,50), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0,0,200), 2, cv2.LINE_AA)
+        cv2.putText(cv2.rectangle(frame1, (200, 150), (400, 350), (255, 0, 0), 1, 4), tex, (20,50), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0,0,200), 2, cv2.LINE_AA)
         cv2.imshow("num", frame1)
 
         key = cv2.waitKey(10)

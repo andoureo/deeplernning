@@ -8,25 +8,25 @@ from keras.preprocessing.image import array_to_img, img_to_array,load_img
 import os
 import re
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-model = load_model('model/keras-mnist-model.h5')
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'                                    # おまじない的な
+model = load_model('model/keras-mnist-model.h5')                            # モデル読み込み
 
 def remake(frame):
     threshold = 100
-    ret, frame = cv2.threshold(frame, threshold, 255, cv2.THRESH_BINARY)
-    frame = cv2.bitwise_not(frame)
-    img = cv2.resize(frame[150:350,200:400],(28,28))
+    ret, frame = cv2.threshold(frame, threshold, 255, cv2.THRESH_BINARY)    # 二値化
+    frame = cv2.bitwise_not(frame)                                          # BW反転
+    img = cv2.resize(frame[150:350,200:400],(28,28))                        # 指定座標を28×28に変換
     return img,frame
 
 def check_number(frame):
     X = []
-    img = img_to_array(frame)
-    X.append(img)
-    X = np.asarray(X)
-    X = X.astype('float32')
-    X = X / 255.0 # 0~255を0~1の範囲に収めるため?　そうっぽい
-    num = model.predict(X)
-    tmp = str(num.argmax())
+    img = img_to_array(frame)                                               # 3次元の ndarrayに変換
+    X.append(img)                                                           # 配列に加える
+    X = np.asarray(X)                                                       # np配列に変換
+    X = X.astype('float32')                                                 # タイプ変換
+    X = X / 255.0                                                           # 0~255を0~1の範囲に収めるため
+    num = model.predict(X)                                                  # ここで判別
+    tmp = str(num.argmax())                                                 # 簡単に言うと0-9ずつ確率をそれぞれ出し(合計100%)一番高い値をここで取り出す
     return tmp
 
 def main():
@@ -36,7 +36,7 @@ def main():
     while(cap.isOpened()):
         ret,frame = cap.read()
         frame1 = frame
-        frame = cv2.cvtColor(cap.read()[1], cv2.COLOR_RGB2GRAY)
+        frame = cv2.cvtColor(cap.read()[1], cv2.COLOR_RGB2GRAY)             # グレイスケール化
         img,frame = remake(frame)
         ansnum = check_number(img)
         ans.append(ansnum)
@@ -51,7 +51,7 @@ def main():
         cv2.imshow("BW",frame)
 
         key = cv2.waitKey(10)
-        if key == 27:
+        if key == 27:                                                       # escキーを押したら終了
             cap.release()
             cv2.destroyAllWindows()
             break

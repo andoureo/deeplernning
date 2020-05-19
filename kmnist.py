@@ -15,8 +15,8 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 model_path="model/keras-kmnist-model.h5"
 #model_arc_str = open(model_path, encoding="latin1").read()
 #model = load_model(model_arc_str)
-model =model_from_json(open("k_mnist_cnn_model.json").read())
-model.load_weights("k_mnist_cnn_weights.h5")
+model =model_from_json(open("model/k_mnist_cnn_model.json").read())
+model.load_weights("model/k_mnist_cnn_weights.h5")
 
 def remake(frame):
     threshold = 100

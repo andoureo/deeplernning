@@ -14,7 +14,7 @@ def frame_sub(img1, img2, img3, th):
     # 二値化処理
     diff[diff < th] = 0
     diff[diff >= th] = 255
-    
+
     return diff
 
 def main():
@@ -43,11 +43,11 @@ def main():
         frame3 = cv2.cvtColor(cap.read()[1], cv2.COLOR_RGB2GRAY)
 
         # qキーが押されたら途中終了
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        key = cv2.waitKey(10)
+        if key == 27:                                                       # escキーを押したら終了
+            cap.release()
+            cv2.destroyAllWindows()
             break
-
-    cap.release()
-    cv2.destroyAllWindows()
 
 
 if __name__ == '__main__':

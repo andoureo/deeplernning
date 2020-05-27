@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import cv2
 import numpy as np
 
@@ -48,7 +47,6 @@ def main():
             cap.release()
             cv2.destroyAllWindows()
             break
-
 
 if __name__ == '__main__':
     main()

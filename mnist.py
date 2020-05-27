@@ -27,7 +27,7 @@ def check_number(frame):
     X = X.astype('float32')                                                 # タイプ変換
     X = X / 255.0                                                           # 0~255を0~1の範囲に収めるため
     num = model.predict(X)                                                  # ここで判別
-    tmp = str(num.argmax())                                                 # 簡単に言うと0-9ずつ確率をそれぞれ出し(合計100%)一番高い値をここで取り出す
+    tmp = str(num.argmax())                                                 # 簡単に説明すると0-9ずつ確率をそれぞれ出し(合計100%)一番高い値をここで取り出す
     return tmp
 
 def main():

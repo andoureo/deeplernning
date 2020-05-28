@@ -46,10 +46,10 @@ def main():
             text = c.most_common()[0][0]
             ans.clear()
 
-        cv2.rectangle(frame1, (200,   150), (400,  350), (255, 0, 0), 1, 4)
-        cv2.putText(frame1, text, (20,50), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (255,0,0), 2, cv2.LINE_AA)
-        cv2.imshow("anser", frame1)
-        cv2.imshow("BW",frame)
+        cv2.rectangle(frame1, (200,   150), (400,  350), (255, 0, 0), 1, 4) #青い四角の枠生成
+        cv2.putText(frame1, text, (20,50), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (255,0,0), 2, cv2.LINE_AA)#答えの数字を左上に描写
+        cv2.imshow("anser", frame1)                                         #カラーの映像を描写
+        cv2.imshow("BW",frame)                                              #実際に数字を出すために処理している画面
 
         key = cv2.waitKey(10)
         if key == 27:                                                       # escキーを押したら終了

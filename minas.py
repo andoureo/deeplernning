@@ -41,7 +41,6 @@ def main():
         frame2 = frame3
         frame3 = cv2.cvtColor(cap.read()[1], cv2.COLOR_RGB2GRAY)
 
-        # qキーが押されたら途中終了
         key = cv2.waitKey(10)
         if key == 27:                                                       # escキーを押したら終了
             cap.release()

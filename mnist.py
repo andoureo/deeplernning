@@ -48,7 +48,7 @@ def main():
 
         cv2.rectangle(frame1, (200,   150), (400,  350), (255, 0, 0), 1, 4)
         cv2.putText(frame1, text, (20,50), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (255,0,0), 2, cv2.LINE_AA)
-        cv2.imshow("num", frame1)
+        cv2.imshow("anser", frame1)
         cv2.imshow("BW",frame)
 
         key = cv2.waitKey(10)

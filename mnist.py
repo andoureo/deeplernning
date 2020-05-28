@@ -8,7 +8,6 @@ from PIL import Image
 from keras.models import load_model
 from keras.preprocessing.image import array_to_img, img_to_array,load_img
 
-
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'                                    # おまじない的な
 model = load_model('model/keras-mnist-model.h5')                            # モデル読み込み
 

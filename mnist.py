@@ -13,7 +13,7 @@ model = load_model('model/keras-mnist-model.h5')                            # �
 
 def remake(frame):
     threshold = 100                                                         # 閾値
-    ret, frame = cv2.threshold(frame, threshold, 255, cv2.THRESH_BINARY)    # 二値化
+    ret, frame = cv2.threshold(frame, threshold, 255, cv2.THRESH_BINARY)    # 二値化  retには(True,False)が格納
     frame = cv2.bitwise_not(frame)                                          # BW反転
     img = cv2.resize(frame[150:350,200:400],(28,28))                        # 指定座標を28×28に変換
     return img,frame

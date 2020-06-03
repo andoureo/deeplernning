@@ -12,8 +12,11 @@ from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras import backend as K
 
+# データを128個ずつに分けて60000(70000?)/128回学習を行う
 batch_size = 128
+# 0~9
 num_classes = 10
+# 60000(70000?)/128回を12回行う
 epochs = 12
 
 # input image dimensions
@@ -43,16 +46,25 @@ print(x_test.shape[0], 'test samples')
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
+# モデル層を積み重ねる形式の記述方法
 model = Sequential()
+# 3*3のフィルタを32枚使用,ReLU関数を使用,(1,28,28)or(28,28,1)
 model.add(Conv2D(32, kernel_size=(3, 3),
                  activation='relu',
                  input_shape=input_shape))
+# 3*3のフィルタを64枚使用,ReLU関数を使用
 model.add(Conv2D(64, (3, 3), activation='relu'))
+# 2*2分のプーリング,2*2の範囲内の中から最大値を出力
 model.add(MaxPooling2D(pool_size=(2, 2)))
+# 全結合層とのつながりを25%無効,過学習予防
 model.add(Dropout(0.25))
+# 1次元ベクトルに変換
 model.add(Flatten())
+# 全結合層,出力128,ReLU関数
 model.add(Dense(128, activation='relu'))
+# 全結合層とのつながりを50%無効
 model.add(Dropout(0.5))
+# 全結合層,出力10,softmax関数
 model.add(Dense(num_classes, activation='softmax'))
 
 model.compile(loss=keras.losses.categorical_crossentropy,

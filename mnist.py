@@ -48,6 +48,8 @@ def main():
 
         cv2.rectangle(color, (200,   150), (400,  350), (255, 0, 0), 1, 4)  # 青い四角の枠生成
         cv2.putText(color, text, (20,50), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (255,0,0), 2, cv2.LINE_AA)    # 答えの数字を左上に描写
+        img1 = cv2.resize(img,(640,480))
+        cv2.imshow("28",img1)
         cv2.imshow("anser", color)                                          # カラーの映像を描写
         cv2.imshow("BW",frame)                                              # 実際に数字を出すために処理している画面
 
